@@ -51,7 +51,9 @@ plot(res_Rc, "R") + labs(title="Estimated Cohort Reproduction Number (Rc)")
 # ----- Bagian D: Instantaneous Reproduction Number (Rt) -----
 res_Rt <- estimate_R(cases, 
                      method = "parametric_si",
-                     config = make_config(list(mean_si = 2.6, std_si = 1.5)))
+                     config = make_config(list(mean_si = 2.6, std_si = 1.5, 
+                                               t_start = t_start, 
+                                               t_end = t_end)))
 
 # Plot Rt
 plot(res_Rt, "R") + labs(title="Estimated Instantaneous Reproduction Number (Rt)")
