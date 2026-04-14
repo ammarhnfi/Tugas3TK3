@@ -39,11 +39,11 @@ cat("Estimasi R0 (Euler-Lotka):", round(R0_Euler, 2), "\n")
 t_start <- seq(2, length(cases) - 6)
 t_end <- seq(8, length(cases))
 
-res_Rc <- wallinga_teunis(cases, 
-                          method = "parametric_si",
-                          config = list(mean_si = 2.6, std_si = 1.5,
-                                        t_start = t_start,
-                                        t_end = t_end, n_sim=100))
+res_Rc <- suppressWarnings(wallinga_teunis(cases, 
+                                           method = "parametric_si",
+                                           config = list(mean_si = 2.6, std_si = 1.5,
+                                                         t_start = t_start,
+                                                         t_end = t_end)))
 
 # Plot Rc
 plot(res_Rc, "R") + labs(title="Estimated Cohort Reproduction Number (Rc)")
