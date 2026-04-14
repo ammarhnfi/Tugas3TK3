@@ -41,7 +41,9 @@ t_end <- seq(8, length(cases))
 
 res_Rc <- wallinga_teunis(cases, 
                           method = "parametric_si",
-                          config = make_config(list(mean_si = 2.6, std_si = 1.5, t_start = t_start, t_end = t_end, n_sim=100)))
+                          config = list(mean_si = 2.6, std_si = 1.5,
+                                        t_start = t_start,
+                                        t_end = t_end, n_sim=100))
 
 # Plot Rc
 plot(res_Rc, "R") + labs(title="Estimated Cohort Reproduction Number (Rc)")
