@@ -80,7 +80,7 @@ Angka Reproduksi Dasar ($R_0$) mendefinisikan rata-rata jumlah infeksi sekunder 
 \subsection{Interval Generasi Influenza H1N1 1918}
 \textit{Serial Interval} (SI) atau \textit{Generation Time} pada transmisi flu H1N1 bervariasi bergantung padatnya interaksi. Serangkaian peninjauan ulang data komprehensif global terkait Flu Spanyol memproyeksikan asumsi \textit{Serial Interval} bersilangan antara 2--3 hari \cite{Vink2014}. Pendekatan distribusi \textbf{Gamma} dengan laju rerata $\mu \approx 2,6$ hari dan standar error deviasi $\sigma \approx 1,5$ hari merupakan referensi definitif yang sangat sering dipakai oleh literatur akademis pemodelan 1918 \cite{White2009}.
 
-\subsection{Estimasi $R_c$ dan $R_t$}
+\subsection{Estimasi \texorpdfstring{$R_c$}{Rc} dan \texorpdfstring{$R_t$}{Rt}}
 Metode Wallinga \& Teunis \textit{backward/cohort distribution} menakar probabilitas transmisi antar kasus untuk mencari jumlah anak infeksi di masa depan yang dihasilkan penderita primer di suatu titik \cite{Wallinga2004}. Berbeda dengan rancangan ini, perumusan bayesian dari metode Cori \textit{et al.} melacak status transmisi seketika (\textit{Instantaneous}) $R_t$, secara \textit{forward/real-time} bergantung total infeksi per \textit{sliding window} dengan riwayat insidensi \cite{Cori2013}.
 
 \section{Hasil dan Analisis}
@@ -97,7 +97,7 @@ Pengambilan data catatan terindikasi harian (paket \texttt{EpiEstim} / \texttt{F
 
 Sumbu y pada Gambar \ref{fig:kurva_insidensi} menegaskan tingginya eskalasi fatalitas pasien rujukan yang secara logistik memenuhi daya huni fasilitas karantina rumah sakit kala itu.
 
-\subsection{Estimasi Persamaan Euler-Lotka ($R_0$)}
+\subsection{Estimasi Persamaan Euler-Lotka (\texorpdfstring{$R_0$}{R0})}
 Laju pertumbuhan penularan $r$ diregresi menggunakan metode \textit{Generalized Linear Model} Poisson \textit{identity log-link} pada rentang 15--20 hari pengamatan pertama penyebaran wabah. Ekstraksi slope laju eksponensial menaruh rasio $r \approx 0,105$ tambahan infeksi per harinya. 
 Melalui pendekatan persamaan Euler-Lotka berbasis log-Gamma (dimana $k = (\mu/\sigma)^2 \approx 3,00$ dan $\theta = \sigma^2/\mu \approx 0,865$):
 \begin{equation}
@@ -106,7 +106,7 @@ Melalui pendekatan persamaan Euler-Lotka berbasis log-Gamma (dimana $k = (\mu/\s
 
 Nilai deterministik analitik awal \textbf{1,3} setara dengan ekspektasi transmisi di pemukiman urban H1N1 pra-restriksi.
 
-\subsection{Estimasi \textit{Cohort Reproduction} ($R_c$)}
+\subsection{Estimasi \textit{Cohort Reproduction} (\texorpdfstring{$R_c$}{Rc})}
 Kajian distribusi probabilitas \textit{back-tracing} metode Wallinga-Teunis disimulasikan sebagai berikut.
 
 \begin{figure}[H]
@@ -118,7 +118,7 @@ Kajian distribusi probabilitas \textit{back-tracing} metode Wallinga-Teunis disi
 
 Gambar \ref{fig:plot_rc} mengisyaratkan tingginya proporsi penular dari penderita subyek kohort awal yang sukses merembetkan penyakit sebelum perlahan melemah menembus kebawah parameter ambang kesetimbangan merah ($R=1$) jelang memudarnya grafik, indikasi \textit{herd density immunity}.
 
-\subsection{Estimasi \textit{Instantaneous Base} ($R_t$)}
+\subsection{Estimasi \textit{Instantaneous Base} (\texorpdfstring{$R_t$}{Rt})}
 Penegasan terhadap intervensi seketika dicerminkan oleh grafik instan $R_t$ Cori \textit{et al.}
 
 \begin{figure}[H]
@@ -130,7 +130,7 @@ Penegasan terhadap intervensi seketika dicerminkan oleh grafik instan $R_t$ Cori
 
 \section{Diskusi}
 
-\subsection{Pergeseran Phase-Lag antara $R_t$ dan $R_c$}
+\subsection{Pergeseran Phase-Lag antara \texorpdfstring{$R_t$}{Rt} dan \texorpdfstring{$R_c$}{Rc}}
 Ketika Gambar \ref{fig:plot_rc} dan Gambar \ref{fig:plot_rt} diperbandingkan, kurva $R_c$ tampak lebih responsif menurun tajam mendahului fenomena pada kurva $R_t$. Hal ini merupakan representasi intrinsik \textit{phase-shift}; metrik kelompok kohort $R_c$ mengasumsikan daya rambat ke "muka" (masa depan) bagi kasus masa kini. Oleh sebab transmisi berhenti di ujung gelombang kurva, individu di puncak akan mewariskan nyaris "nol" anak turun kasus baru ke depannya ($R_c < 1$). Namun pada metode pelacakan interval bergelombang mundur $R_t$ (\textit{backward smoothing window}), puncak angka penurunan akan terdeteksi \textit{delay} seiring penyebaran data lampau ikut mendominasi perhitungan insidensi kala status berjalan.
 
 \subsection{Kausalitas Intervensi Historis}

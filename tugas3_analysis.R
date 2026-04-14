@@ -21,7 +21,7 @@ ggplot(df, aes(x=Date, y=I)) +
 # ----- Bagian B: Estimasi Euler-Lotka (R0) -----
 # Sub-jendela eksponensial awal (Misal index hari 1-20)
 early_data <- df[1:20,]
-early_data$Day <- 1:nrow(early_data)
+early_data$Day <- seq_len(nrow(early_data))
 
 fit <- glm(I ~ Day, family = poisson(link="log"), data=early_data)
 r_growth <- coef(fit)["Day"]  # Ekstrak laju r
