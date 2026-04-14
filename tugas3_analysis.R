@@ -36,9 +36,12 @@ R0_Euler <- (1 + r_growth * theta)^k
 cat("Estimasi R0 (Euler-Lotka):", round(R0_Euler, 2), "\n")
 
 # ----- Bagian C: Cohort Reproduction Number (Rc) -----
+t_start <- seq(2, length(cases) - 6)
+t_end <- seq(8, length(cases))
+
 res_Rc <- wallinga_teunis(cases, 
                           method = "parametric_si",
-                          config = list(mean_si = 2.6, std_si = 1.5, n_sim=100))
+                          config = make_config(list(mean_si = 2.6, std_si = 1.5, t_start = t_start, t_end = t_end, n_sim=100)))
 
 # Plot Rc
 plot(res_Rc, "R") + labs(title="Estimated Cohort Reproduction Number (Rc)")

@@ -51,7 +51,7 @@
 
 %%%%%% Abstract (two-column) %%%%%%
 \begin{abstract}
-Studi ini menganalisis dinamika penyebaran wabah influenza H1N1 tahun 1918 di Baltimore dengan mengevaluasi tiga metrik reproduksi epidemiologis: Angka Reproduksi Dasar ($R_0$), \textit{Cohort Reproduction Number} ($R_c$), dan \textit{Instantaneous Reproduction Number} ($R_t$). Data insidensi awal digunakan untuk mengekstraksi laju pertumbuhan eksponensial ($r$) yang dikonversi menjadi estimasi $R_0 \approx 1,5$ menggunakan Persamaan Euler-Lotka dengan asumsi \textit{generation time} berdistribusi Gamma. Lebih lanjut, analisis probabilistik menggunakan kerangka Wallinga \& Teunis untuk $R_c$ dan metode Cori et al. untuk $R_t$ menunjukkan profil transmisi penyakit yang sangat responsif terhadap penipisan populasi rentan (\textit{susceptible depletion}) serta implementasi intervensi kesehatan publik seperti penutupan sekolah, pelarangan acara publik, dan karantina. Pengamatan terhadap kurva $R_t$ dan $R_c$ mengonfirmasi terjadinya \textit{phase lag} di antara keduanya, sekaligus memperlihatkan bagaimana penurunan nilai metrik reproduktif secara konsisten ke bawah ambang batas kesetimbangan 1 sejalan dengan laju deeskalasi penularan di kehidupan nyata.
+Studi ini menganalisis dinamika penyebaran wabah influenza H1N1 tahun 1918 di Baltimore dengan mengevaluasi tiga metrik reproduksi epidemiologis: Angka Reproduksi Dasar ($R_0$), \textit{Cohort Reproduction Number} ($R_c$), dan \textit{Instantaneous Reproduction Number} ($R_t$). Data insidensi awal digunakan untuk mengekstraksi laju pertumbuhan eksponensial ($r$) yang dikonversi menjadi estimasi $R_0 \approx 1,3$ menggunakan Persamaan Euler-Lotka dengan asumsi \textit{generation time} berdistribusi Gamma. Lebih lanjut, analisis probabilistik menggunakan kerangka Wallinga \& Teunis untuk $R_c$ dan metode Cori et al. untuk $R_t$ menunjukkan profil transmisi penyakit yang sangat responsif terhadap penipisan populasi rentan (\textit{susceptible depletion}) serta implementasi intervensi kesehatan publik seperti penutupan sekolah, pelarangan acara publik, dan karantina. Pengamatan terhadap kurva $R_t$ dan $R_c$ mengonfirmasi terjadinya \textit{phase lag} di antara keduanya, sekaligus memperlihatkan bagaimana penurunan nilai metrik reproduktif secara konsisten ke bawah ambang batas kesetimbangan 1 sejalan dengan laju deeskalasi penularan di kehidupan nyata.
 \par\medskip
 \noindent\textbf{Kata kunci:} Influenza H1N1, Angka Reproduksi Dasar, $R_c$, $R_t$, Persamaan Euler-Lotka, Pemodelan Intervensi.
 \end{abstract}
@@ -98,13 +98,13 @@ Pengambilan data catatan terindikasi harian (paket \texttt{EpiEstim} / \texttt{F
 Sumbu y pada Gambar \ref{fig:kurva_insidensi} menegaskan tingginya eskalasi fatalitas pasien rujukan yang secara logistik memenuhi daya huni fasilitas karantina rumah sakit kala itu.
 
 \subsection{Estimasi Persamaan Euler-Lotka ($R_0$)}
-Laju pertumbuhan penularan $r$ diregresi menggunakan metode \textit{Generalized Linear Model} Poisson \textit{identity log-link} pada rentang 15--20 hari pengamatan pertama penyebaran wabah. Ekstraksi slope laju eksponensial menaruh rasio $r \approx 0,15$ tambahan infeksi per harinya. 
+Laju pertumbuhan penularan $r$ diregresi menggunakan metode \textit{Generalized Linear Model} Poisson \textit{identity log-link} pada rentang 15--20 hari pengamatan pertama penyebaran wabah. Ekstraksi slope laju eksponensial menaruh rasio $r \approx 0,105$ tambahan infeksi per harinya. 
 Melalui pendekatan persamaan Euler-Lotka berbasis log-Gamma (dimana $k = (\mu/\sigma)^2 \approx 3,00$ dan $\theta = \sigma^2/\mu \approx 0,865$):
 \begin{equation}
-    R_0 = (1 + r \theta)^k = (1 + (0,15 \times 0,865))^3 \approx 1,5
+    R_0 = (1 + r \theta)^k = (1 + (0,105 \times 0,865))^3 \approx 1,3
 \end{equation}
 
-Nilai deterministik analitik awal \textbf{1,5} setara dengan ekspektasi transmisi di pemukiman urban H1N1 pra-restriksi.
+Nilai deterministik analitik awal \textbf{1,3} setara dengan ekspektasi transmisi di pemukiman urban H1N1 pra-restriksi.
 
 \subsection{Estimasi \textit{Cohort Reproduction} ($R_c$)}
 Kajian distribusi probabilitas \textit{back-tracing} metode Wallinga-Teunis disimulasikan sebagai berikut.
@@ -134,10 +134,10 @@ Penegasan terhadap intervensi seketika dicerminkan oleh grafik instan $R_t$ Cori
 Ketika Gambar \ref{fig:plot_rc} dan Gambar \ref{fig:plot_rt} diperbandingkan, kurva $R_c$ tampak lebih responsif menurun tajam mendahului fenomena pada kurva $R_t$. Hal ini merupakan representasi intrinsik \textit{phase-shift}; metrik kelompok kohort $R_c$ mengasumsikan daya rambat ke "muka" (masa depan) bagi kasus masa kini. Oleh sebab transmisi berhenti di ujung gelombang kurva, individu di puncak akan mewariskan nyaris "nol" anak turun kasus baru ke depannya ($R_c < 1$). Namun pada metode pelacakan interval bergelombang mundur $R_t$ (\textit{backward smoothing window}), puncak angka penurunan akan terdeteksi \textit{delay} seiring penyebaran data lampau ikut mendominasi perhitungan insidensi kala status berjalan.
 
 \subsection{Kausalitas Intervensi Historis}
-Berdasarkan fakta rekaman arsip Baltimore, penurunan eksponensial instan baik pada kurva harian maupun $R_t$ setelah sebulan merebaknya virus bertepatan dengan tindakan preskriptif Dewan Komisi Kesehatan Maryland. Ketatnya implementasi pelarangan pertemuan (\textit{ban on gatherings}), restriksi waktu sekolah, bioskop, hingga tempat singgah publik yang diiringi dengan penipisan cadangan populasi rentan (kebanyakan telah diinfeksi dan sembuh / kebal parsial) adalah pemicu fundamental reduksi kurva dari $R_0=1,5$ terseret konstan dan statis di bawah skala $R=1,0$.
+Berdasarkan fakta rekaman arsip Baltimore, penurunan eksponensial instan baik pada kurva harian maupun $R_t$ setelah sebulan merebaknya virus bertepatan dengan tindakan preskriptif Dewan Komisi Kesehatan Maryland. Ketatnya implementasi pelarangan pertemuan (\textit{ban on gatherings}), restriksi waktu sekolah, bioskop, hingga tempat singgah publik yang diiringi dengan penipisan cadangan populasi rentan (kebanyakan telah diinfeksi dan sembuh / kebal parsial) adalah pemicu fundamental reduksi kurva dari $R_0=1,3$ terseret konstan dan statis di bawah skala $R=1,0$.
 
 \section{Kesimpulan}
-Kajian epidemiologi menggunakan rujukan data historis Flu Baltimore 1918 menghasilkan Angka Reproduksi setingkat penyebaran \textit{medium pathogen severity} ($\approx 1,5$). Penurunan tingkat transmisi menembus zona aman $R < 1$ dapat dikonfirmasi akibat pembatasan non-farmasi (NPIs) yang berhasil membatasi interaksi kontak inang serta penyusutan absolut kompartemen \textit{Susceptible}. Estimasi probabilistik dari \textit{Wallinga-Teunis} dan \textit{Cori et al.} mengafirmasi urgensi metrik adaptif dalam proses pelarut dinamika intervensi di mana indikator kohort memproyeksikan kepunahan lebih instan dibanding bayangan historis seketika.
+Kajian epidemiologi menggunakan rujukan data historis Flu Baltimore 1918 menghasilkan Angka Reproduksi setingkat penyebaran \textit{medium pathogen severity} ($\approx 1,3$). Penurunan tingkat transmisi menembus zona aman $R < 1$ dapat dikonfirmasi akibat pembatasan non-farmasi (NPIs) yang berhasil membatasi interaksi kontak inang serta penyusutan absolut kompartemen \textit{Susceptible}. Estimasi probabilistik dari \textit{Wallinga-Teunis} dan \textit{Cori et al.} mengafirmasi urgensi metrik adaptif dalam proses pelarut dinamika intervensi di mana indikator kohort memproyeksikan kepunahan lebih instan dibanding bayangan historis seketika.
 
 \printbibliography
 
